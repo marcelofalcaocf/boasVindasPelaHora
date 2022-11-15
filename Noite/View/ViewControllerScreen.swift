@@ -32,6 +32,7 @@ class ViewControllerScreen: UIView {
         configBackGround()
         configSuperView()
         setUpConstraints()
+        
     }
     
     func configBackGround() {
@@ -41,6 +42,32 @@ class ViewControllerScreen: UIView {
     func configSuperView() {
         addSubview(backgroundImage)
         backgroundImage.addSubview(welcomeMessage)
+    }
+    
+    @objc func knowHour() {
+        let currentDataTime = Date()
+        let formatter = DateFormatter()
+        
+        formatter.timeStyle = .short
+        
+        let hour = Calendar.current.component(.hour, from: currentDataTime)
+//        let timeString = formatter.string(from: currentDataTime)
+//        let minutes = Calendar.current.component(.minute, from: currentDataTime)
+//        print(timeString)
+        
+        if hour >= 6 && hour <= 11 {
+            welcomeMessage.text = "Bom dia para você"
+            backgroundImage.image = UIImage(named: "bomDia")
+        } else if hour <= 17 {
+            welcomeMessage.text = "Boa tarde para você"
+            backgroundImage.image = UIImage(named: "boaTarde")
+        } else if hour <= 23 {
+            welcomeMessage.text = "Boa noite para você"
+            backgroundImage.image = UIImage(named: "boaNoite")
+        } else {
+            welcomeMessage.text = "Ainda está acordado?"
+            backgroundImage.image = UIImage(named: "horaDeDormir")
+        }
     }
     
     required init?(coder: NSCoder) {
