@@ -45,6 +45,7 @@ class ViewControllerScreen: UIView {
     }
     
     @objc func knowHour() {
+//        NotificationCenter.default.post(name: NSNotification.Name("time"), object: nil)
         let currentDataTime = Date()
         let formatter = DateFormatter()
         
@@ -56,15 +57,19 @@ class ViewControllerScreen: UIView {
 //        print(timeString)
         
         if hour >= 6 && hour <= 11 {
+            NotificationCenter.default.post(name: NSNotification.Name("bomDia"), object: nil)
             welcomeMessage.text = "Bom dia para você"
             backgroundImage.image = UIImage(named: "bomDia")
         } else if hour <= 17 {
+            NotificationCenter.default.post(name: NSNotification.Name("boaTarde"), object: nil)
             welcomeMessage.text = "Boa tarde para você"
             backgroundImage.image = UIImage(named: "boaTarde")
         } else if hour <= 23 {
+            NotificationCenter.default.post(name: NSNotification.Name("boaNoite"), object: nil)
             welcomeMessage.text = "Boa noite para você"
             backgroundImage.image = UIImage(named: "boaNoite")
         } else {
+            NotificationCenter.default.post(name: NSNotification.Name("horaDeDormir"), object: nil)
             welcomeMessage.text = "Ainda está acordado?"
             backgroundImage.image = UIImage(named: "horaDeDormir")
         }
@@ -80,7 +85,6 @@ class ViewControllerScreen: UIView {
             backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            
             
             welcomeMessage.topAnchor.constraint(equalTo: topAnchor, constant: 200),
             welcomeMessage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
