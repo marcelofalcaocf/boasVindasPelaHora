@@ -15,54 +15,26 @@ class ViewController: UIViewController {
         self.viewControllerScreen = ViewControllerScreen()
         self.view = self.viewControllerScreen
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllerScreen.knowHour()
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(calledHourMoorning),
-            name: NSNotification.Name("bomDia"),
+            selector: #selector(onTypeCalled),
+            name: .typing,
             object: nil)
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(calledHourAfternoon),
-            name: NSNotification.Name("boaTarde"),
-            object: nil)
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(calledHourNight),
-            name: NSNotification.Name("boaNoite"),
-            object: nil)
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(calledHourSleep),
-            name: NSNotification.Name("horaDeDormir"),
-            object: nil)
+        viewControllerScreen.knowHour()
     }
     
-//    @objc private func onTypeCalled(_ notification: Notification) {
-//        viewControllerScreen.backgroundImage.image = notification.userInfo?["image"] as? UIImage
-//        viewControllerScreen.welcomeMessage.text = notification.userInfo?["text"] as? String
-//    }
+    @objc private func onTypeCalled(_ notification: Notification) {
+        viewControllerScreen.backgroundImage.image = notification.userInfo?["image"] as? UIImage
+        viewControllerScreen.welcomeMessage.text = notification.userInfo?["text"] as? String
+    }
     
-    @objc private func calledHourMoorning() {
-        print("Dia")
-    }
-
-    @objc private func calledHourAfternoon() {
-        print("Tarde")
-    }
-
-    @objc private func calledHourNight() {
-        print("Noite")
-    }
-
-    @objc private func calledHourSleep() {
-        print("Dormir")
-    }
 }
 
+extension NSNotification.Name {
+    static let typing: NSNotification.Name = .init(rawValue: "type")
+}

@@ -32,7 +32,6 @@ class ViewControllerScreen: UIView {
         configBackGround()
         configSuperView()
         setUpConstraints()
-        
     }
     
     func configBackGround() {
@@ -45,33 +44,33 @@ class ViewControllerScreen: UIView {
     }
     
     @objc func knowHour() {
-//        NotificationCenter.default.post(name: NSNotification.Name("time"), object: nil)
         let currentDataTime = Date()
         let formatter = DateFormatter()
         
         formatter.timeStyle = .short
         
         let hour = Calendar.current.component(.hour, from: currentDataTime)
-//        let timeString = formatter.string(from: currentDataTime)
-//        let minutes = Calendar.current.component(.minute, from: currentDataTime)
-//        print(timeString)
         
         if hour >= 6 && hour <= 11 {
-            NotificationCenter.default.post(name: NSNotification.Name("bomDia"), object: nil)
-            welcomeMessage.text = "Bom dia para você"
-            backgroundImage.image = UIImage(named: "bomDia")
+            NotificationCenter.default.post(name: .typing, object: nil, userInfo: [
+                "text": "Bom dia para você",
+                "image": UIImage(named: "bomDia") ?? UIImage()
+            ])
         } else if hour <= 17 {
-            NotificationCenter.default.post(name: NSNotification.Name("boaTarde"), object: nil)
-            welcomeMessage.text = "Boa tarde para você"
-            backgroundImage.image = UIImage(named: "boaTarde")
+            NotificationCenter.default.post(name: .typing, object: nil, userInfo: [
+                "text": "Boa tarde para você",
+                "image": UIImage(named: "boaTarde") ?? UIImage()
+            ])
         } else if hour <= 23 {
-            NotificationCenter.default.post(name: NSNotification.Name("boaNoite"), object: nil)
-            welcomeMessage.text = "Boa noite para você"
-            backgroundImage.image = UIImage(named: "boaNoite")
+            NotificationCenter.default.post(name: .typing, object: nil, userInfo: [
+                "text": "Boa Noite para você",
+                "image": UIImage(named: "boaNoite") ?? UIImage()
+            ])
         } else {
-            NotificationCenter.default.post(name: NSNotification.Name("horaDeDormir"), object: nil)
-            welcomeMessage.text = "Ainda está acordado?"
-            backgroundImage.image = UIImage(named: "horaDeDormir")
+            NotificationCenter.default.post(name: .typing, object: nil, userInfo: [
+                "text": "Ainda está acordado?",
+                "image": UIImage(named: "horaDeDormir") ?? UIImage()
+            ])
         }
     }
     
