@@ -11,6 +11,8 @@ class ViewController: UIViewController {
 
     lazy var viewControllerScreen: ViewControllerScreen = .init()
     
+    private var observer: NSObjectProtocol?
+    
     override func loadView() {
         self.viewControllerScreen = ViewControllerScreen()
         self.view = self.viewControllerScreen
@@ -24,6 +26,9 @@ class ViewController: UIViewController {
             selector: #selector(onTypeCalled),
             name: .typing,
             object: nil)
+        
+//        observer = NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main, using: { notification in
+//        })
 
         viewControllerScreen.knowHour()
     }
