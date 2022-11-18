@@ -52,25 +52,17 @@ class ViewControllerScreen: UIView {
         let hour = Calendar.current.component(.hour, from: currentDataTime)
         
         if hour >= 6 && hour <= 11 {
-            NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil, userInfo: [
-                "text": "Bom dia para você",
-                "image": UIImage(named: "bomDia") ?? UIImage()
-            ])
+            welcomeMessage.text = "Bom dia para você"
+            backgroundImage.image =  UIImage(named: "bomDia")
         } else if hour <= 17 {
-            NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil, userInfo: [
-                "text": "Boa tarde para você",
-                "image": UIImage(named: "boaTarde") ?? UIImage()
-            ])
+            welcomeMessage.text = "Boa tarde para você"
+            backgroundImage.image = UIImage(named: "boaTarde")
         } else if hour <= 23 {
-            NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil, userInfo: [
-                "text": "Boa Noite para você",
-                "image": UIImage(named: "boaNoite") ?? UIImage()
-            ])
+            welcomeMessage.text = "Boa noite para você"
+            backgroundImage.image = UIImage(named: "boaNoite")
         } else {
-            NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil, userInfo: [
-                "text": "Ainda está acordado?",
-                "image": UIImage(named: "horaDeDormir") ?? UIImage()
-            ])
+            welcomeMessage.text = "Ainda está acordado?"
+            backgroundImage.image = UIImage(named: "horaDeDormir") ?? UIImage()
         }
     }
     

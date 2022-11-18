@@ -21,12 +21,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(onTypeCalled),
-//            name: .typing,
-//            object: nil)
-        
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(onTypeCalled), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -35,12 +29,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func onTypeCalled(_ notification: Notification) {
-        viewControllerScreen.backgroundImage.image = notification.userInfo?["image"] as? UIImage
-        viewControllerScreen.welcomeMessage.text = notification.userInfo?["text"] as? String
+        viewControllerScreen.knowHour()
     }
-    
 }
 
-//extension NSNotification.Name {
-//    static let typing: NSNotification.Name = .init(rawValue: "type")
-//}
