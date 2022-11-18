@@ -21,14 +21,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onTypeCalled),
-            name: .typing,
-            object: nil)
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(onTypeCalled),
+//            name: .typing,
+//            object: nil)
         
-//        observer = NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main, using: { notification in
-//        })
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(onTypeCalled), name: UIApplication.willEnterForegroundNotification, object: nil)
 
         viewControllerScreen.knowHour()
     }
@@ -40,6 +41,6 @@ class ViewController: UIViewController {
     
 }
 
-extension NSNotification.Name {
-    static let typing: NSNotification.Name = .init(rawValue: "type")
-}
+//extension NSNotification.Name {
+//    static let typing: NSNotification.Name = .init(rawValue: "type")
+//}
